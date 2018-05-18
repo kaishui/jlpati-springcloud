@@ -12,6 +12,7 @@
     <properties>
         <spring-cloud-dependencies.version>Edgware.SR3</spring-cloud-dependencies.version>
         <spring-boot-dependencies.version>1.5.12.RELEASE</spring-boot-dependencies.version>
+        <spring-cloud-netflix.version>1.4.4.RELEASE</spring-cloud-netflix.version>
     </properties>
     <!--依赖管理-->
     <dependencyManagement>
@@ -31,6 +32,11 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+           <!-- <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-netflix</artifactId>
+                <version>${spring-cloud-netflix.version}</version>
+            </dependency>-->
         </dependencies>
     </dependencyManagement>
 

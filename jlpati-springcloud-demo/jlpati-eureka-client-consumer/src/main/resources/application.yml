@@ -1,0 +1,23 @@
+#日志设置
+logging:
+  level:
+    root: debug
+  file: jlpati-eureka-client.log
+  org:
+    springframework:
+      web:  DEBUG
+
+
+spring:
+  output:
+    ansi:
+      enabled: always #logging console 输出颜色设置
+  application:
+    name: eureka-client-4
+server:
+  port: 9009
+  host: localhost
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://${server.host}:8012/eureka/,http://${server.host}:8013/eureka/,http://${server.host}:8011/eureka/
