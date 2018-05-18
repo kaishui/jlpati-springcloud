@@ -1,0 +1,92 @@
+#日志设置
+logging:
+  level:
+    root: debug
+  file: jlpati-eureka-server.log
+  org:
+    springframework:
+      web:  DEBUG
+---
+spring:
+  output:
+    ansi:
+      enabled: always #logging console 输出颜色设置
+  application:
+    name: eureka-server-clustered
+  profiles: peer1
+server:
+  port: 8011
+  host: localhost
+eureka:
+  instance:
+    hostname: eureka-peer3
+    preferIpAddress: true
+    instance-id: ${spring.cloud.client.ipAddress}:${server.port}        # 将Instance ID设置成IP:端口的形式
+    statusPageUrlPath: ${management.context-path}/info
+    healthCheckUrlPath: ${management.context-path}/health
+    non-secure-port-enabled: false
+    secure-port-enabled: true
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://user:password@${server.host}:8012/eureka/,http://user:password@${server.host}:8013/eureka/
+management:
+  context-path: /admin
+
+---
+spring:
+  output:
+    ansi:
+      enabled: always #logging console 输出颜色设置
+  application:
+    name: eureka-server-clustered
+  profiles: peer2
+server:
+  port: 8012
+  host: localhost
+eureka:
+  instance:
+    hostname: eureka-peer3
+    preferIpAddress: true
+    instance-id: ${spring.cloud.client.ipAddress}:${server.port}        # 将Instance ID设置成IP:端口的形式
+    statusPageUrlPath: ${management.context-path}/info
+    healthCheckUrlPath: ${management.context-path}/health
+    non-secure-port-enabled: false
+    secure-port-enabled: true
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://user:password@${server.host}:8011/eureka/,http://user:password@${server.host}:8013/eureka/
+management:
+  context-path: /admin
+
+---
+spring:
+  output:
+    ansi:
+      enabled: always #logging console 输出颜色设置
+  application:
+    name: eureka-server-clustered
+  profiles: peer3
+server:
+  port: 8013
+  host: localhost
+eureka:
+  instance:
+    hostname: eureka-peer3
+    preferIpAddress: true
+    instance-id: ${spring.cloud.client.ipAddress}:${server.port}        # 将Instance ID设置成IP:端口的形式
+    statusPageUrlPath: ${management.context-path}/info
+    healthCheckUrlPath: ${management.context-path}/health
+    non-secure-port-enabled: false
+    secure-port-enabled: true
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://user:password@${server.host}:8011/eureka/,http://user:password@${server.host}:8012/eureka/
+management:
+  context-path: /admin
+
