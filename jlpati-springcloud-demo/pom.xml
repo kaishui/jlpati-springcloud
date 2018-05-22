@@ -14,7 +14,7 @@
     <description>JL Springcloud Eureka</description>
 
     <modules>
-        <module>jlpati-eureka-client</module>
+        <module>jlpati-eureka-client-provider</module>
         <module>jlpati-eureka-client-consumer</module>
     </modules>
 </project>

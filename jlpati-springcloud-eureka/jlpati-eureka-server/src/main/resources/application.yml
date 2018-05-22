@@ -6,6 +6,34 @@ logging:
   org:
     springframework:
       web:  DEBUG
+
+---
+spring:
+  output:
+    ansi:
+      enabled: always #logging console 输出颜色设置
+  application:
+    name: eureka-server-standalone
+  profiles: standalone
+server:
+  port: 8010
+  host: localhost
+eureka:
+  instance:
+    hostname: eureka-peer3
+    preferIpAddress: true
+    instance-id: ${spring.cloud.client.ipAddress}:${server.port}        # 将Instance ID设置成IP:端口的形式
+    statusPageUrlPath: ${management.context-path}/info
+    healthCheckUrlPath: ${management.context-path}/health
+    non-secure-port-enabled: false
+    secure-port-enabled: true
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://user:password@${server.host}:${server.port}/eureka/
+management:
+  context-path: /admin
 ---
 spring:
   output:
